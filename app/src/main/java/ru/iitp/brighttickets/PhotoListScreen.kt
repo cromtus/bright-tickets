@@ -1,6 +1,7 @@
 package ru.iitp.brighttickets
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -37,6 +38,12 @@ fun PhotoListScreen(
     val screenWidth = configuration.screenWidthDp.dp // Get screen width
     val tileWidth = screenWidth / 3 // Calculate width of each tile (3 per row)
     val tileHeight = tileWidth * (configuration.screenHeightDp.toFloat() / configuration.screenWidthDp.toFloat())
+
+    if (isEditMode) {
+        BackHandler {
+            onDoneClick()
+        }
+    }
 
     Scaffold(
         floatingActionButton = {
